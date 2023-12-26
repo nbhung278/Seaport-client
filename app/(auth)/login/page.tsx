@@ -56,20 +56,22 @@ const Login = () => {
       const res: any = await LoginUserMutation({
         variables: loginData,
       });
-      if (res.data?.login) {
+      if (res.data) {
         toast.success("Login successfully");
         Cookies.set("access_token", res.data.login?.accessToken);
         Cookies.set("refresh_token", res.data.login?.refreshToken);
         router.push("/");
         form.reset();
+      } else {
+        if (res?.errors?.length > 0) {
+          toast.error(res?.errors[0]?.message, {
+            description: "Sunday, December 03, 2023 at 9:00 AM",
+          });
+        }
       }
     } catch (error: any) {
       toast.error(error?.message, {
         description: "Sunday, December 03, 2023 at 9:00 AM",
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo"),
-        },
       });
     }
   };
@@ -119,6 +121,9 @@ const Login = () => {
                 </FormItem>
               )}
             />
+            <div className="w-full flex flex-row justify-end">
+              <p className="text-[14px] cursor-pointer">Forgot Password?</p>
+            </div>
             <Button type="submit" className="w-full">
               Login
             </Button>
