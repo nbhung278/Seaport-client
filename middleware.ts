@@ -23,4 +23,4 @@ export function middleware(request: NextRequest) {
 
 export const protectedRoutes = ["/"];
 export const authRoutes = ["/login"];
-export const publicRoutes = ["/login", "/register"];
+export const publicRoutes = ["/login", "/register", "/forgot-password"];

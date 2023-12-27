@@ -22,6 +22,8 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "@/graphql/actions/login.action";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import imageSocial from "../../../public/assets/images/social-3.jpg";
+import Image from "next/image";
 
 const FormSchema = z.object({
   email: z
@@ -79,7 +81,13 @@ const Login = () => {
   const [LoginUserMutation, { loading, error, data }] = useMutation(LOGIN_USER);
   return (
     <div className="flex flex-row items-center justify-between w-screen h-screen">
-      <div className="bg-black h-full flex-1 max-md:hidden"></div>
+      <div className="h-full flex-1 max-md:hidden">
+        <Image
+          src={imageSocial}
+          alt="loginImage"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       <div className="flex flex-1 flex-col items-center justify-center xl:px-[100px]">
         <Form {...form}>
@@ -122,7 +130,9 @@ const Login = () => {
               )}
             />
             <div className="w-full flex flex-row justify-end">
-              <p className="text-[14px] cursor-pointer">Forgot Password?</p>
+              <Link href={"/forgot-password"}>
+                <p className="text-[14px] cursor-pointer">Forgot Password?</p>
+              </Link>
             </div>
             <Button type="submit" className="w-full">
               Login

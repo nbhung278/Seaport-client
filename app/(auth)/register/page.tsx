@@ -25,6 +25,8 @@ import OtpVerifyDialog from "@/components/dialogs/OtpVerifyDialog";
 import { VERIFY_USER } from "@/graphql/actions/activationToken.action";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
+import imageBlogging from "../../../public/assets/images/social-2.jpg";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -125,7 +127,13 @@ const Register = () => {
 
   return (
     <div className="flex flex-row items-center justify-between w-screen h-screen">
-      <div className="bg-black h-full flex-1 max-md:hidden"></div>
+      <div className=" h-full flex-1 max-md:hidden">
+        <Image
+          src={imageBlogging}
+          alt="loginImage"
+          className="w-full h-full object-cover"
+        />
+      </div>
 
       <div className="flex flex-1 flex-col items-center justify-center xl:px-[100px]">
         <Form {...form}>
