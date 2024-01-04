@@ -75,10 +75,13 @@
   }
 
   .padding-content {
-    @apply max-md:px-[20px] px-[130px];
+    @apply max-lg:px-[20px] max-xl:px-[70px] px-[130px] max-w-[2000px] m-auto;
   }
 
   .bg-bw {
     @apply bg-white dark:bg-[#020817];
+  }
+  .bg-bw-card {
+    @apply bg-white dark:bg-[#1b1b1b];
   }
 }

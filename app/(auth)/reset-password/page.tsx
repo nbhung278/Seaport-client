@@ -16,40 +16,44 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useMutation } from "@apollo/client";
-import { useRouter } from "next/navigation";
 import imageSocial from "../../../public/assets/images/social-4.jpg";
 import Image from "next/image";
-import { FORGOT_PASSWORD } from "@/graphql/actions/forgotPassword.action";
+import { RESET_PASSWORD } from "@/graphql/actions/resetPassword.action";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z.object({
-  email: z
-    .string()
-    .email({
-      message: "This field must have type email.",
-    })
-    .max(64, {
-      message: "This field can only have a maximum of 64 characters.",
-    }),
+  password: z.string().min(6, {
+    message: "Password must be at least 6 characters.",
+  }),
 });
-const ForgotPassword = () => {
+
+const ResetPassword = ({
+  searchParams,
+}: {
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
+}) => {
+  const activationToken = searchParams["verify"] ?? "";
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
+      password: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     const newData = {
-      email: data.email || "",
+      password: data.password || "",
+      activationToken: activationToken,
     };
     try {
-      const res: any = await forgotPassword({
+      const res: any = await resetPassword({
         variables: newData,
       });
-      if (res.data?.forgotPassword) {
-        toast.success(res.data?.forgotPassword?.message, {
+      if (res.data?.resetPassword) {
+        toast.success("Reset password successful", {
           description: "Sunday, December 03, 2023 at 9:00 AM",
         });
         router.push("/login");
@@ -61,7 +65,8 @@ const ForgotPassword = () => {
     }
   };
 
-  const [forgotPassword, { loading }] = useMutation(FORGOT_PASSWORD);
+  const [resetPassword, { loading }] = useMutation(RESET_PASSWORD);
+
   return (
     <div className="flex flex-row items-center justify-between w-screen h-screen">
       <div className=" h-full flex-1 max-md:hidden">
@@ -86,11 +91,15 @@ const ForgotPassword = () => {
             </div>
             <FormField
               control={form.control}
-              name="email"
+              name="password"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="Enter your password"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,4 +134,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

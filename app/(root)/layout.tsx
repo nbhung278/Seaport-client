@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/shared/Header";
 import { ThemeProvider } from "@/components/theme-provider";
+import CategoryBar from "@/components/shared/CategoryBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
+          <CategoryBar />
           <main>
             <section>{children}</section>
           </main>
