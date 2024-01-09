@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeAuthProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className}`}>
-        <ThemeAuthProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
@@ -29,7 +29,7 @@ export default function RootLayout({
             <section>{children}</section>
           </main>
           <Toaster />
-        </ThemeAuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

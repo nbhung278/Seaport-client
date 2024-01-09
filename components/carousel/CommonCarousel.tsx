@@ -27,9 +27,9 @@ const CommonCarousel = (props: propsType) => {
       className="w-full"
     >
       <CarouselContent>
-        {data.map((el) => (
+        {data.map((el, index) => (
           <CarouselItem
-            key={el.id}
+            key={el?.id || index}
             className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 text-center"
           >
             <span className="cursor-pointer">{el.text}</span>

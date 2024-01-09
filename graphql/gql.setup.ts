@@ -9,9 +9,6 @@ import Cookies from "js-cookie";
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_SERVER_URI,
 });
-const httpAuthLink = createHttpLink({
-  uri: process.env.NEXT_PUBLIC_AUTH_SERVER_URI,
-});
 
 const authMiddleware = new ApolloLink((oparetion, forward) => {
   oparetion.setContext({
@@ -25,10 +22,5 @@ const authMiddleware = new ApolloLink((oparetion, forward) => {
 
 export const graphqlClient = new ApolloClient({
   link: authMiddleware.concat(httpLink),
-  cache: new InMemoryCache(),
-});
-
-export const graphqlAuthClient = new ApolloClient({
-  link: authMiddleware.concat(httpAuthLink),
   cache: new InMemoryCache(),
 });
