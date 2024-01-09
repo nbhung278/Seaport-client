@@ -10,7 +10,7 @@ import {
 
 interface dataType {
   id: string | number;
-  text: string;
+  name: string;
 }
 
 interface propsType {
@@ -32,7 +32,7 @@ const CommonCarousel = (props: propsType) => {
             key={el?.id || index}
             className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 text-center"
           >
-            <span className="cursor-pointer">{el.text}</span>
+            <span className="cursor-pointer">{el.name}</span>
           </CarouselItem>
         ))}
       </CarouselContent>
