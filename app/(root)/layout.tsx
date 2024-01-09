@@ -4,6 +4,7 @@ import "../globals.css";
 import Header from "@/components/shared/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 import CategoryBar from "@/components/shared/CategoryBar";
+import Footer from "@/components/shared/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <main>
             <section>{children}</section>
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

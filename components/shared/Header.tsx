@@ -77,7 +77,7 @@ const Header = () => {
     }
   }, [loading]);
 
-  const hanldeLogout = () => {
+  const handleLogout = () => {
     Cookies.remove("access_token");
     Cookies.remove("refresh_token");
     router.push("/login");
@@ -287,7 +287,7 @@ const Header = () => {
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     {signedIn ? (
-                      <DropdownMenuItem onClick={hanldeLogout}>
+                      <DropdownMenuItem onClick={handleLogout}>
                         <LogOut className="mr-2 h-4 w-4" />
                         <span>Log out</span>
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

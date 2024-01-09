@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import CommonCarousel from "../carousel/CommonCarousel";
 
 const CategoryBar = () => {
   const listCategories = [
@@ -38,7 +39,7 @@ const CategoryBar = () => {
   ];
   return (
     <div className="padding-content sticky top-0 flex flex-row justify-between items-center h-[100px]  border-b-[1px]  bg-bw z-[1]">
-      <Carousel
+      {/* <Carousel
         opts={{
           align: "start",
         }}
@@ -54,7 +55,8 @@ const CategoryBar = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-      </Carousel>
+      </Carousel> */}
+      <CommonCarousel data={listCategories} />
     </div>
   );
 };

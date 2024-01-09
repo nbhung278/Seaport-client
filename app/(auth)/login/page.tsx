@@ -59,10 +59,10 @@ const Login = () => {
         variables: loginData,
       });
       if (res.data) {
-        toast.success("Login successfully");
         Cookies.set("access_token", res.data.login?.accessToken);
         Cookies.set("refresh_token", res.data.login?.refreshToken);
         router.push("/");
+        toast.success("Login successfully");
         form.reset();
       } else {
         if (res?.errors?.length > 0) {

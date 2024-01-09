@@ -1,9 +1,16 @@
+"use client";
 import Image from "next/image";
 import imageSocial from "../../public/assets/images/social-3.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { FcDatabase } from "react-icons/fc";
+import { FaAngleRight } from "react-icons/fa";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 export default function Home() {
   const leftPosts = [
@@ -93,6 +100,57 @@ export default function Home() {
     },
   ];
 
+  const rightPosts2 = [
+    {
+      id: 1,
+      image: imageSocial,
+      category: "Business of Web Development",
+      title: "Build a Next.js Blog: A Step-by-Step Guide",
+    },
+    {
+      id: 2,
+      image: imageSocial,
+      category: "Tech stack",
+      title: "Headless CMS: A Complete Introduction",
+    },
+    {
+      id: 3,
+      image: imageSocial,
+      category: "Business of Web Development",
+      title: "Build a Next.js Blog: A Step-by-Step Guide",
+    },
+    {
+      id: 4,
+      image: imageSocial,
+      category: "Tech stack",
+      title: "Headless CMS: A Complete Introduction",
+    },
+    {
+      id: 5,
+      image: imageSocial,
+      category: "Business of Web Development",
+      title: "Build a Next.js Blog: A Step-by-Step Guide",
+    },
+    {
+      id: 6,
+      image: imageSocial,
+      category: "Tech stack",
+      title: "Headless CMS: A Complete Introduction",
+    },
+    {
+      id: 7,
+      image: imageSocial,
+      category: "Business of Web Development",
+      title: "Build a Next.js Blog: A Step-by-Step Guide",
+    },
+    {
+      id: 8,
+      image: imageSocial,
+      category: "Tech stack",
+      title: "Headless CMS: A Complete Introduction",
+    },
+  ];
+
   const centerPost = {
     id: 1,
     image: imageSocial,
@@ -106,8 +164,8 @@ export default function Home() {
   };
 
   return (
-    <main className="padding-content">
-      <div className="mt-10">
+    <main>
+      <div className="mt-10 padding-content">
         <div>
           <p className="text-[#b84eff] font-medium">The Seaport Blog</p>
           <h1 className="font-semibold text-5xl mt-3">Choose your stack.</h1>
@@ -244,6 +302,58 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="w-full bg-black mt-20 pt-8 pb-16">
+        <div className="w-full padding-content">
+          <div className="flex flex-row justify-between items-end my-2 gap-5">
+            <p className=" text-[22px] sm:text-[28px] lg:text-[42px] text-white font-semibold">
+              Latest Youtube content
+            </p>
+            {/* <p className="text-[10px] sm:text-[14px] lg:text-[16px] text-white font-semibold pb-1 sm:pb-2 cursor-pointer hover:underline">
+              Show more <FaAngleRight className="inline-block  text-[20px]" />
+            </p> */}
+          </div>
+          <Carousel
+            opts={{
+              align: "start",
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              {rightPosts2.map((rightPost, index) => (
+                <>
+                  <CarouselItem
+                    key={rightPost.id}
+                    className="sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/4"
+                  >
+                    <div
+                      key={rightPost.id}
+                      className="rounded-md overflow-hidden shadow-md cursor-pointer bg-bw-card min-h-[356px]"
+                    >
+                      <Image
+                        src={rightPost.image}
+                        alt="rightPost"
+                        className="w-full"
+                      />
+                      <div className="p-3">
+                        <div className="flex flex-row items-center gap-1">
+                          <FcDatabase />
+                          <p className="text-[14px] font-medium line-clamp-1">
+                            {rightPost.category}
+                          </p>
+                        </div>
+                        <p className="text-[18px] font-medium mt-2 line-clamp-2">
+                          {rightPost.title}
+                        </p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                </>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </div>
+      <div className="h-[1000px]">choose your stack</div>
     </main>
   );
 }
