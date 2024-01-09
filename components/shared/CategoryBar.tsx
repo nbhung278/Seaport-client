@@ -3,7 +3,7 @@
 import React from "react";
 import CommonCarousel from "../carousel/CommonCarousel";
 import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES } from "@/graphql/actions/getCategories.ation";
+import { GET_CATEGORIES } from "@/graphql/actions/getCategories.action";
 
 const CategoryBar = () => {
   const { loading, data } = useQuery(GET_CATEGORIES);
