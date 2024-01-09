@@ -6,7 +6,12 @@ import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "@/graphql/actions/getCategories.action";
 
 const CategoryBar = () => {
-  const { loading, data } = useQuery(GET_CATEGORIES);
+  const { loading, data } = useQuery(GET_CATEGORIES, {
+    variables: {
+      // page: 3,
+      // perPage: 2,
+    },
+  });
   const categories: CategoryTypes[] = data?.getCategories?.categories || [];
 
   return (
